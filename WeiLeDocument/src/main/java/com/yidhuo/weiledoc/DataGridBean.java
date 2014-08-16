@@ -1,0 +1,171 @@
+package com.yidhuo.weiledoc;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author Administrator
+ *
+ *
+ */
+@ManagedBean(name = "dataGridBean")
+@RequestScoped
+public final class DataGridBean implements Serializable {
+
+    private String selectedAct;
+    private String keyWords;
+    private final Map<String, ServiceConfigBean> serviceConfigMap = GenerateDOC.getServiceConfigMap();
+    private ServiceConfigBean selectedServiceConfigBean;
+    private List<ServiceConfigBean> serviceConfigList = new ArrayList<ServiceConfigBean>();
+//    private List<FieldInfoBean> importParameterList = new ArrayList<FieldInfoBean>();
+//    private List<FieldInfoBean> minorParameterList = new ArrayList<FieldInfoBean>();
+//    private List<FieldInfoBean> returnParameterList = new ArrayList<FieldInfoBean>();
+
+    public DataGridBean() {
+        this.searchResult();
+    }
+
+    public String searchResult() {
+        System.out.println("execute here ....");
+        getServiceConfigList().clear();
+
+        if (getKeyWords() != null && !keyWords.isEmpty()) {
+            Collection<ServiceConfigBean> serviceConfigCollection = getServiceConfigMap().values();
+            for (ServiceConfigBean bean : serviceConfigCollection) {
+                if (bean.getAct().contains(getKeyWords()) || bean.getDescription().contains(getKeyWords())) {
+                    getServiceConfigList().add(bean);
+                }
+            }
+        } else {
+            Collection<ServiceConfigBean> serviceConfigCollection = getServiceConfigMap().values();
+            for (ServiceConfigBean bean : serviceConfigCollection) {
+                getServiceConfigList().add(bean);
+            }
+        }
+        return "document.xhtml";
+    }
+
+    /**
+     * @return the keyWords
+     */
+    public String getKeyWords() {
+        return keyWords;
+    }
+
+    /**
+     * @param keyWords the keyWords to set
+     */
+    public void setKeyWords(String keyWords) {
+        System.out.println("keyWords =" + keyWords);
+        this.keyWords = keyWords;
+
+    }
+
+    /**
+     * @return the serviceConfigList
+     */
+    public List<ServiceConfigBean> getServiceConfigList() {
+        return serviceConfigList;
+    }
+
+    /**
+     * @param serviceConfigList the serviceConfigList to set
+     */
+    public void setServiceConfigList(List<ServiceConfigBean> serviceConfigList) {
+        this.serviceConfigList = serviceConfigList;
+    }
+
+    /**
+     * @return the selecteServiceConfigBean
+     */
+    public ServiceConfigBean getSelectedServiceConfigBean() {
+        return selectedServiceConfigBean;
+    }
+
+    /**
+     * @param selecteServiceConfigBean the selecteServiceConfigBean to set
+     */
+    public void setSelectedServiceConfigBean(ServiceConfigBean selectedServiceConfigBean) {
+        System.out.println("set ...............................................");
+        System.out.println("selectedServiceConfigBean.act =" + selectedServiceConfigBean.getAct());
+        this.selectedServiceConfigBean = selectedServiceConfigBean;
+//        this.setImportParameterList(selectedServiceConfigBean.getImportParametersList());
+//        this.setMinorParameterList(selectedServiceConfigBean.getMiorParametersList());
+//        this.setReturnParameterList(selectedServiceConfigBean.getReturnParametersList());
+    }
+
+//    /**
+//     * @return the importParameterList
+//     */
+//    public List<FieldInfoBean> getImportParameterList() {
+//        return importParameterList;
+//    }
+//
+//    /**
+//     * @param importParameterList the importParameterList to set
+//     */
+//    public void setImportParameterList(List<FieldInfoBean> importParameterList) {
+//        this.importParameterList = importParameterList;
+//    }
+//
+//    /**
+//     * @return the minorParameterList
+//     */
+//    public List<FieldInfoBean> getMinorParameterList() {
+//        return minorParameterList;
+//    }
+//
+//    /**
+//     * @param minorParameterList the minorParameterList to set
+//     */
+//    public void setMinorParameterList(List<FieldInfoBean> minorParameterList) {
+//        this.minorParameterList = minorParameterList;
+//    }
+//
+//    /**
+//     * @return the returnParameterList
+//     */
+//    public List<FieldInfoBean> getReturnParameterList() {
+//        return returnParameterList;
+//    }
+//
+//    /**
+//     * @param returnParameterList the returnParameterList to set
+//     */
+//    public void setReturnParameterList(List<FieldInfoBean> returnParameterList) {
+//        this.returnParameterList = returnParameterList;
+//    }
+//
+//    /**
+//     * @return the selectedAct
+//     */
+//    public String getSelectedAct() {
+//        return selectedAct;
+//    }
+//
+//    /**
+//     * @param selectedAct the selectedAct to set
+//     */
+//    public void setSelectedAct(String selectedAct) {
+//        System.out.println("set ...............................................");
+//           System.out.println("selectedServiceConfigBean.act =" + selectedServiceConfigBean.getAct());
+//
+//    }
+
+    /**
+     * @return the serviceConfigMap
+     */
+    public Map<String, ServiceConfigBean> getServiceConfigMap() {
+        return serviceConfigMap;
+    }
+
+ 
+
+ 
+}

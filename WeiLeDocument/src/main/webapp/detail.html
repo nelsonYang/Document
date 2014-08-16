@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>接口文档</title>
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+        <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    </head>
+    <body>
+    <center>
+        <h2>详细文档</h2>
+        <div style="margin-bottom:10px;c">
+            <div>
+                关键字: <input  id="keyWords"name="keyWords" type="text"></input>
+                <input type="button" value="提交" onclick="search();"></input>
+            </div>
+        </div>
+        <table id="dg" title="接口列表" class="easyui-datagrid" style="width:auto;height:auto"
+               url="DetailServlet"
+               toolbar="#toolbar" pagination="false"
+               rownumbers="true" fitColumns="true" singleSelect="true">
+            <thead>
+                <tr>
+                    <th field="actionName" width="50">接口名字</th>
+                    <th field="description" width="50">接口描述</th>
+                    <th field="requestCrypt" width="50">输入加密(0-明文 1-aes 2-签名)</th>
+                    <th field="responseCrypt" width="50">输出加密(0-明文 1-aes 2-签名)</th>
+                </tr>
+            </thead>
+        </table>
+        <div id="dlg" class="easyui-dialog" style="width:400px;height:auto;padding:10px 20px;text-align: center; font-weight: bold;font-size: 40px"
+             closed="true" buttons="#dlg-buttons">
+            <div class="ftitle" style="text-align: center">接口的详细内容</div>
+        </div>
+        <script type="text/javascript">
+                    function search() {
+                        var keywords = $('#keyWords').val();
+                        $('#dg').datagrid('load', {
+                            keyWords: encodeURIComponent(keywords)
+                        });
+                    }
+                    $('#dg').datagrid({
+                        'onClickRow': function(rowIndex, rowData) {
+                            $('#dlg').dialog('open').dialog('setTitle', '接口文档详细内容').dialog('refresh', 'SingleDetailServlet?act=' + rowData.actionName)
+                        }
+                    });
+        </script>
+        <style type="text/css">
+            #fm{
+                margin:0;
+                padding:10px 30px;
+            }
+            .ftitle{
+                font-size:14px;
+                font-weight:bold;
+                padding:5px 0;
+                margin-bottom:10px;
+                border-bottom:1px solid #ccc;
+            }
+            .fitem{
+                margin-bottom:5px;
+            }
+            .fitem label{
+                display:inline-block;
+                width:80px;
+            }
+        </style>
+    </center>
+</body>
+</html>

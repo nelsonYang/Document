@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>接口文档--ErrorCode</title>
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+        <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    </head>
+
+    <body style="text-align:center">
+    <center >
+        <h2 >ErrorCode------<a href="detail.html" style="color:red;font-size: 20px;font-weight: bold">详细文档</a></h2>
+        <table id="dg" title="ErrorCode" class="easyui-datagrid" style="width:auto;height:auto;"  url="ErrorCodeServlet" toolbar="#toolbar" pagination="false"
+               rownumbers="true" fitColumns="true" singleSelect="true" >
+            <thead>
+                <tr>
+                    <th field="errorCode" width="50%" style="text-align:center">错误码</th>
+                    <th field="errorCodeDescription" width="50%" style="text-align:center">错误码说明</th>
+                </tr>
+            </thead>
+        </table>
+        <style type="text/css">
+            #fm{
+                margin:0;
+                padding:10px 30px;
+            }
+            .ftitle{
+                font-size:14px;
+                font-weight:bold;
+                padding:5px 0;
+                margin-bottom:10px;
+                border-bottom:1px solid #ccc;
+            }
+            .fitem{
+                margin-bottom:5px;
+            }
+            .fitem label{
+                display:inline-block;
+                width:80px;
+            }
+        </style>
+    </center>
+</body>
+
+</html>

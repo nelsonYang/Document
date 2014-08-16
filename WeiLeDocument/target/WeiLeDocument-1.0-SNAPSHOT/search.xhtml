@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>接口文档</title>
+    </h:head>
+    <h:body>
+        <h:form id="form" enctype="application/x-www-form-urlencoded" acceptcharset="UTF-8">  
+            <p:dataGrid var="serviceConfigBean" value="#{dataGridBean.serviceConfigList}" columns="3"  
+                        rows="12" paginator="true"  
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="9,12,15">  
+                <p:column>
+                    <p:panel header="#{serviceConfigBean.act}---#{serviceConfigBean.description}" style="text-align:center">  
+                        <h:panelGrid columns="2" style="width:100%">  
+                            <h:outputLabel for="description" value="act:"/>  
+                            <h:outputText id="description" value="#{serviceConfigBean.description}" />
+                            <h:outputLabel for="requestCrypt" value="参数加密:"/>  
+                            <h:outputText  id="requestCrypt" value="#{serviceConfigBean.requestCrypt}" />
+                            <h:outputLabel for="responseCypt" value="返回加密:"/>  
+                            <h:outputText id="responseCypt" value="#{serviceConfigBean.responseCrypt}" />
+
+                        </h:panelGrid>  
+                        <p:commandLink update=":form:serviceConfigDetail" process="@this" oncomplete="serviceConfigDetail.show()"  title="View Detail" value="查看详细" >  
+                            <f:setPropertyActionListener value="#{serviceConfigBean}"   target="#{dataGridBean.selectedServiceConfigBean}" />  
+                        </p:commandLink> 
+                    </p:panel>  
+                </p:column>
+            </p:dataGrid>  
+          
+        </h:form>  
+    </h:body>
+</html>
+
+

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>接口文档</title>
+    </h:head>
+    <h:body style="text-align:center">
+ 
+        <h:outputLabel value="接口文档" style="font-weight:bold;text-align: center"/> &nbsp;&nbsp; 
+        <a  href="document.xhtml" style="font-weight: bold;color: red">接口文档的详细内容</a>
+        <p:dataTable id="resultCodeDataTable" var="resultCode" value="#{dataTableBean.resultCodeList}">  
+            <f:facet name="header">  
+                错误码说明
+            </f:facet>  
+            <p:column  headerText="错误码"  style="text-align: center">  
+                <h:outputText value="#{resultCode.key}" />  
+            </p:column>  
+            <p:column  headerText="错误说明" style="text-align: center">   
+                <h:outputText value="#{resultCode.value}" />  
+            </p:column>  
+        </p:dataTable>  
+ 
+
+    </h:body>
+</html>
+
+
